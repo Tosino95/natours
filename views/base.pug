@@ -1,0 +1,37 @@
+doctype html 
+html
+  head
+    block head 
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      link(rel='stylesheet' href='/css/style.css')
+      link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+      title Natours | #{title}
+
+
+  body
+    // HEADER
+    include _header
+    // CONTENT 
+    //- main.main
+    //- Whatever extends base.pug has to have block content in order to render what will be shown in this section
+    block content
+      h1 This is a placeholder heading
+
+    // FOOTER
+    include _footer
+
+    //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js') 
+    //- script(src='/js/mapbox.js') 
+    //- script(src='/js/login.js') 
+    script(src='https://js.stripe.com/v3/')
+    script(src='/js/bundle.js') 
+
+
+
+    //- Using JS is buffered code but if we don't want the code to add anything to the output, that is unbuffered code
+    //- which is prefixed with a dash. 
+    //- For div, we can just use a . to indicate it is a div.
+    //- include prefix means the file is a child of the parent base.pug here
+    //- the base template still has access to the locals, so the variables that we passed into the template.

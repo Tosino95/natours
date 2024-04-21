@@ -1,0 +1,69 @@
+Json Web Tokens are a stateless solution for authentication.
+So there is no need to store any session state on the server
+which is perfect for restful APIs like this one.
+Restful APIs should always be stateless.
+The most widely used alternative to authentication
+with JWTs is to just store the user's log-in state
+on the server using sessions. This does not follow the principle
+that restful APIs should be stateless and that's why JWTs is 
+the better solution.
+
+So essentially, it's an encoding string made up of three parts.
+The header, the payload and the signature.
+Now the header is just some metadata about the token itself
+and the payload is the data that we can encode
+into the token, any data really that we want.
+So the more data we want to encode here,
+the bigger the JWT. These two parts are just plain text
+that will get encoded, but not encrypted.
+So anyone will be able to decode them and to read them.
+Therefore we cannot store any sensitive data in there.
+
+The signature is created using the header, the payload
+and the secret that is saved on the server. This whole process 
+is then called signing the Json Web Token. The signing algorithm 
+takes the header, the payload and the secret to create a unique signature.
+
+Once the server receives a JWT to grant access to a protected route, 
+it needs to verify it in order to determine if the user really is
+who he claims to be. It will verify if no one changed the header
+and the payload data of the token. So again, this verification step 
+will check if no third party actually altered either the header
+or the payload of the Json Web Token.
+
+Once the JWT is received, the verification will take it's header and 
+payload and together with the secret that is still saved
+on the server, basically create a test signature, but the original 
+signature that was generated when the JWT was first created is still 
+in the token. And that's the key for this verification because now all 
+we have to do is to compare the test signature with the original signature.
+And if the test signature is the same as the original signature, then it 
+means that the payload and the header have not been modified.
+
+Without the secret, even if the JWT data was manipulated, it will always fail 
+the verification step because they cannot create a valid signature for the new data.
+
+In the config file where setting up the secret, it's best practice to use 
+at least 32 characters. Always use unique secrets for applications.
+
+jwt.io for debugger
+
+The standard for sending a token is that we should always use a header called authorization.
+Then the value of that header should always start with Bearer because basically we bear,
+we have, we possess this token and then here the value of the token. Key: authorization 
+value: Bearer dsfjdfsdjjidsvndis
+
+A cookie is basically just a small piece of text that a server can send to clients.
+Then when the client receives a cookie, it will automatically store it
+and then automatically send it back along with all future requests to the same server.
+So again, a browser automatically stores a cookie that it receives and sends it back
+in all future requests to that server where it came from.
+
+Data sanitization basically means to clean all the data that comes into the application 
+from malicious code. So, code that is trying to attack our application.
+
+When a cookie is set to http only, that means that we cannot manipulate or delete a cookie
+in any way in our browser. To keep using this super secure way of storing cookies instead
+of usually with JWT authentication deleting the cookie or the token from local storage, we
+log out by creating a very simple log out route that will simply send back a new cookie with 
+the exact same name but without the token.
