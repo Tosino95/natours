@@ -227,11 +227,11 @@ tourSchema.pre(/^find/, function (next) {
 
 // A post-find hook is middleware that is gonna run after any "find" query is executed. Therefore, it can
 // have access to the documents that were returned because the query has already finished at this point.
-tourSchema.post(/^find/, function (docs, next) {
-  console.log(`Query took ${Date.now() - this.start} milliseconds`);
-  // console.log(docs);
-  next();
-});
+// tourSchema.post(/^find/, function (docs, next) {
+//   console.log(`Query took ${Date.now() - this.start} milliseconds`);
+//   // console.log(docs);
+//   next();
+// });
 
 // AGGREGATION MIDDLEWARE:
 
